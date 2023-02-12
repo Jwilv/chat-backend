@@ -17,7 +17,11 @@ router.post('/new',[
 ] ,createUser );
 
 //logeo de user ya existente, Login
-router.post('/',loginUser );
+router.post('/',[
+    check('password','la password debe ser mayor a 6 caracteres').isLength({min:6}),
+    check('email','no es un email valido').isEmail(),
+    validateFiles
+],loginUser );
 
 //renovar token, Renew
 router.get('/renew', tokenRenew);
