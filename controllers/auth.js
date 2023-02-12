@@ -46,11 +46,47 @@ const createUser = async (req, res) => {
     }
 }
 
-const loginUser = (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'Login',
-    });
+const loginUser = async(req, res) => {
+
+    const { password, email } = req.body;
+
+    try {
+
+        const userExist = await User.findOne({email});
+
+        if(!userExist){
+            return res.status(400).json({
+                ok: true,
+                msg: 'check email and password'
+            })
+        }
+
+        const validatePassword  = bcrypt.compareSync(password, userExist.password);
+
+        if(!validatePassword){
+            return res.status(400).json({
+                ok: true,
+                msg: 'check email and password'
+            })
+        }
+
+        const token = await generateJWT(userExist.id);
+
+        res.status(200).json({
+            ok:true,
+            id : userExist.id,
+            email: userExist.email,
+            name: userExist.name,
+            token,
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'comuniquese con un admin'
+        })
+    }
 }
 
 const tokenRenew = (req, res) => {
