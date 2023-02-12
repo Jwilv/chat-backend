@@ -89,11 +89,27 @@ const loginUser = async(req, res) => {
     }
 }
 
-const tokenRenew = (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'renew',
-    });
+const tokenRenew = async(req, res) => {
+
+    try {
+        const {id} = req;
+
+        const token = await generateJWT(id);
+
+        const user = await  User.findById(id);
+    
+        return res.json({
+            ok: true,
+            user,
+            token,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'comuniquese con un admin'
+        });
+    }
 }
 
 
