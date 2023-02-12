@@ -6,7 +6,8 @@ const {check} = require('express-validator')
 const { Router } = require('express');
 const router = Router();
 const { createUser, loginUser, tokenRenew} = require('../controllers/auth');
-const {validateFiles} = require('../middlewares/validate-files')
+const {validateFiles} = require('../middlewares/validate-files');
+const { validateToken } = require('../middlewares/validate-token');
 
 //nuevo user, Register
 router.post('/new',[
@@ -24,7 +25,7 @@ router.post('/',[
 ],loginUser );
 
 //renovar token, Renew
-router.get('/renew', tokenRenew);
+router.get('/renew', validateToken ,  tokenRenew);
 
 
 
