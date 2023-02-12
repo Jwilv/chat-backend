@@ -36,13 +36,8 @@ class Server {
         //configuracion cors
         this.app.use(cors());
 
-        //get de el historial de eventos
-        this.app.get('/historial', (req, res) => {
-            res.json({
-                ok: true,
-                ultimos: this.sockets.TicketList.showNumbers
-            })
-        })
+        //router auth
+        this.app.use('/api/login', require('../router/auth'));;
 
     }
 
