@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
 
         if (existEmail) {
             return res.status(400).json({
-                ok: true,
+                ok: false,
                 msg: 'este correo ya esta en uso'
             })
         }
