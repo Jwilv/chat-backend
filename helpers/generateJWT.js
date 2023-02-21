@@ -34,5 +34,6 @@ try {
 }
 
 module.exports = {
-    generateJWT
+    generateJWT,
+    checkToken,
 }
