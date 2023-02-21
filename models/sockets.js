@@ -14,18 +14,18 @@ class Sockets {
 
     socketEvents() {
         // on connection
-        this.io.on('connection', async(socket) => {
+        this.io.on('connection', async (socket) => {
             const [valid, uid] = checkToken(socket.handshake.query['x-token']);
 
-            if(!valid){
+            if (!valid) {
                 socket.disconnect();
             }
 
             await userConnect(uid);
 
-        socket.on('disconnect',()=>{
-            console.log('user disconnect');
-        })
+            socket.on('disconnect', async () => {
+                await userDisconnect(uid);
+            })
 
         })
 
