@@ -1,4 +1,4 @@
-const { userConnect } = require("../controllers/sockets");
+const { userConnect, userDisconnect } = require("../controllers/sockets");
 const { checkToken } = require("../helpers/generateJWT");
 
 
