@@ -25,10 +25,7 @@ const userDisconnect = async (uid) => {
 }
 
 const getUsers = async () => {
-    const users = User
-        .find()
-        .sort('-online');
-
+    const users = await User.find().sort('-online');
     return users
 }
 

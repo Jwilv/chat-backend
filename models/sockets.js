@@ -23,7 +23,7 @@ class Sockets {
 
             await userConnect(uid);
 
-            this.io.emit('list-users', await getUsers);
+            this.io.emit('list-users', await getUsers() );
 
             socket.on('disconnect', async () => {
                 await userDisconnect(uid);
