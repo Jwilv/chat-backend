@@ -1,4 +1,4 @@
-const { userConnect, userDisconnect } = require("../controllers/sockets");
+const { userConnect, userDisconnect, getUsers } = require("../controllers/sockets");
 const { checkToken } = require("../helpers/generateJWT");
 
 
@@ -22,6 +22,8 @@ class Sockets {
             }
 
             await userConnect(uid);
+
+            this.io.emit('list-users', await getUsers);
 
             socket.on('disconnect', async () => {
                 await userDisconnect(uid);
