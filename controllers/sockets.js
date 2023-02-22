@@ -1,6 +1,6 @@
 const User  = require('../models/user')
 
-const userConnect = async(uid)=>{
+const userConnect = async (uid) => {
 
     const user = await User.findById(uid);
 
@@ -12,7 +12,7 @@ const userConnect = async(uid)=>{
 
 }
 
-const userDisconnect = async(uid)=>{
+const userDisconnect = async (uid) => {
 
     const user = await User.findById(uid);
 
@@ -24,7 +24,16 @@ const userDisconnect = async(uid)=>{
 
 }
 
-module.exports={
+const getUsers = async () => {
+    const users = User
+        .find()
+        .sort('-online');
+
+    return users
+}
+
+module.exports = {
     userConnect,
     userDisconnect,
+    getUsers,
 }
