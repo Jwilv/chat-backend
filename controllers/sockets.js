@@ -3,14 +3,6 @@ const Message = require('../models/message');
 
 const userConnect = async (uid) => {
 
-    // const user = await User.findById(uid);
-
-    // user.online = true;
-
-    // await user.save();
-
-    // return user
-
     const user = await User.findById(uid);
     user.online = true;
     await user.save();
