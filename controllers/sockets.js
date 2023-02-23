@@ -2,13 +2,19 @@ const User  = require('../models/user')
 
 const userConnect = async (uid) => {
 
+    // const user = await User.findById(uid);
+
+    // user.online = true;
+
+    // await user.save();
+
+    // return user
+
     const user = await User.findById(uid);
-
-    user.online = true;
-
+    user.online =  true;
     await user.save();
-
-    return user
+    
+    return user;
 
 }
 
@@ -25,7 +31,7 @@ const userDisconnect = async (uid) => {
 }
 
 const getUsers = async () => {
-    const users = await User.find().sort('-online');
+    const users = await User?.find().sort('-online');
     return users
 }
 

@@ -58,7 +58,7 @@ const loginUser = async(req, res) => {
 
         if(!userExist){
             return res.status(400).json({
-                ok: true,
+                ok: false,
                 msg: 'check email and password'
             })
         }
@@ -67,7 +67,7 @@ const loginUser = async(req, res) => {
 
         if(!validatePassword){
             return res.status(400).json({
-                ok: true,
+                ok: false,
                 msg: 'check email and password'
             })
         }
