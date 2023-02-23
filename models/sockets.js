@@ -28,7 +28,8 @@ class Sockets {
             this.io.emit('list-users', await getUsers() );
 
             socket.on('personal-message', async(payload)=>{
-                await recordMessage(payload);
+                const message = await recordMessage(payload);
+                this.io.to(payload.para).emit('personal-message', message);
             });
 
             socket.on('disconnect', async () => {
