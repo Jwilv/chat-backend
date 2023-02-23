@@ -27,6 +27,10 @@ class Sockets {
 
             this.io.emit('list-users', await getUsers() );
 
+            socket.on('personal-message', (payload)=>{
+                
+            });
+
             socket.on('disconnect', async () => {
                 await userDisconnect(uid);
                 this.io.emit('list-users', await getUsers() );
