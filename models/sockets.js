@@ -30,6 +30,7 @@ class Sockets {
             socket.on('personal-message', async(payload)=>{
                 const message = await recordMessage(payload);
                 this.io.to(payload.para).emit('personal-message', message);
+                this.io.to(payload.de).emit('personal-message', message);
             });
 
             socket.on('disconnect', async () => {
