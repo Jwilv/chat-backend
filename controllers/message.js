@@ -11,7 +11,7 @@ const getMessageChat = async(req, res) => {
         ]
     })
     .sort({ createAt:'asc'})
-    .limit(100);
+    .limit(300);
 
     return res.status(200).json({
         id,
