@@ -10,7 +10,7 @@ const getMessageChat = async(req, res) => {
             {de:emissary, para:id}
         ]
     })
-    .sort({ createAt:'desc'})
+    .sort({ createAt:'asc'})
     .limit(100);
 
     return res.status(200).json({
